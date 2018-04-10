@@ -137,7 +137,8 @@ LPXDTA
 MemAdd(
    LPXDTALINK* plpLast,
    UINT cchFileName,
-   UINT cchAlternateFileName)
+   UINT cchAlternateFileName,
+   UINT cchFullFileName)
 {
    LPXDTA lpxdta;
    UINT cbSpace;
@@ -147,7 +148,8 @@ MemAdd(
 #endif
 
    cbSpace = ALIGNBLOCK((cchFileName+
-                         cchAlternateFileName+2)*sizeof(WCHAR)+
+                         cchAlternateFileName+
+	                     cchFullFileName+3)*sizeof(WCHAR)+
                          sizeof(XDTA));
 
 #ifdef MEMDOUBLE
@@ -197,6 +199,7 @@ MemAdd(
    lpLast->dwNextFree += cbSpace;
    lpxdta->dwSize = cbSpace;
    lpxdta->cchFileNameOffset = cchFileName+1;
+   lpxdta->cchAlternateFileNameOffset = lpxdta->cchFileNameOffset + cchAlternateFileName + 1;
 
    return lpxdta;
 }

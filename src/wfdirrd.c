@@ -780,7 +780,7 @@ Fail:
 		        {
 		        	// TODO: make add routine to share with below
 
-					lpxdta = MemAdd(&lpLinkLast, lstrlen(szLinkDest), 0);
+					lpxdta = MemAdd(&lpLinkLast, lstrlen(szLinkDest), 0, 0);
 
 					if (!lpxdta)
 					 goto CDBMemoryErr;
@@ -872,7 +872,7 @@ Fail:
       //
       lpHead->dwEntries++;
 
-      lpxdta = MemAdd(&lpLinkLast, 0, 0);
+      lpxdta = MemAdd(&lpLinkLast, 0, 0, 0);
 
       if (!lpxdta)
          goto CDBMemoryErr;
@@ -887,6 +887,7 @@ Fail:
 
       MemGetFileName(lpxdta)[0] = CHAR_NULL;
       MemGetAlternateFileName(lpxdta)[0] = CHAR_NULL;
+	  MemGetFullFileName(lpxdta)[0] = CHAR_NULL;
 
       //
       // Date time size name not set since they are ignored
@@ -976,9 +977,16 @@ Fail:
          iBitmap = BM_IND_FIL;
       }
 
+	  WCHAR szFullPath[2 * MAXPATHLEN];
+
+	  lstrcpy(szFullPath, szPath);
+	  StripFilespec(szFullPath);
+	  AppendToPath(szFullPath, pName);
+
       lpxdta = MemAdd(&lpLinkLast,
                       lstrlen(pName),
-                      lstrlen(lfndta.fd.cAlternateFileName));
+                      lstrlen(lfndta.fd.cAlternateFileName),
+                      lstrlen(szFullPath));
 
       if (!lpxdta)
          goto CDBMemoryErr;
@@ -1007,7 +1015,8 @@ Fail:
          lpxdta->dwAttrs |= ATTR_LOWERCASE;
 
       lstrcpy(MemGetFileName(lpxdta), pName);
-      lstrcpy(MemGetAlternateFileName(lpxdta), lfndta.fd.cAlternateFileName);
+	  lstrcpy(MemGetAlternateFileName(lpxdta), lfndta.fd.cAlternateFileName);
+	  lstrcpy(MemGetFullFileName(lpxdta), szFullPath);
 
       lpHead->dwTotalCount++;
       (lpHead->qTotalSize).QuadPart = (lpxdta->qFileSize).QuadPart +
