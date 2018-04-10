@@ -24,7 +24,7 @@ VOID (APIENTRY *lpfnRegisterPenApp)(WORD, BOOL);
 BYTE chPenReg[] = "RegisterPenApp";    // used in GetProcAddress call
 
 TCHAR szNTlanman[] = TEXT("ntlanman.dll");
-TCHAR szHelv[] = TEXT("MS Shell Dlg");
+TCHAR szHelv[] = TEXT("Segoe UI");
 /*
 ** 6/13/95 FloydR Note re: MS Gothic, MS Shell Dlg and System fonts for Japan.
 ** For 3.51J, the "MS Shell Dlg" font is linked to the "MS Gothic" Japanese
@@ -235,7 +235,7 @@ GetSettings()
                            szSize,
                            bJAPAN ?
                               TEXT("14") :
-                              TEXT("8"),
+                              TEXT("9"),
                            szTemp,
                            COUNTOF(szTemp),
                            szTheINIFile);
@@ -1043,7 +1043,7 @@ JAPANEND
                            COUNTOF(szTemp),
                            szTheINIFile);
 
-   hfontDriveList = CreateFont(GetHeightFromPointsString(TEXT("8")),
+   hfontDriveList = CreateFont(GetHeightFromPointsString(TEXT("9")),
                                0, 0,
                                0, 400, 0,
                                0,
