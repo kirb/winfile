@@ -2086,7 +2086,7 @@ CHECK_OPTION:
 
     case IDM_HELPINDEX:
    	   SetCurrentDirectory(szOriginalDirPath);
-	   if (!HtmlHelp(hwndFrame, szWinfileHelp, HH_DISPLAY_TOC, NULL))
+	   if (!HtmlHelp(hwndFrame, szWinfileHelp, HH_DISPLAY_TOC, (DWORD)NULL))
           MyMessageBox(hwndFrame, IDS_WINFILE, IDS_WINHELPERR, MB_OK | MB_ICONEXCLAMATION | MB_SYSTEMMODAL);
        break;
 
