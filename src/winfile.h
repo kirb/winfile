@@ -603,7 +603,6 @@ BOOL CancelDlgProc  (HWND, UINT, WPARAM, LPARAM);
 INT_PTR  DrivesDlgProc(HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);
 INT_PTR  AssociateDlgProc(HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);
 INT_PTR  SearchDlgProc(HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);
-INT_PTR  RunDlgProc(HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);
 INT_PTR  SelectDlgProc(HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);
 INT_PTR  FontDlgProc(HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);
 INT_PTR  SuperDlgProc(HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);
@@ -1385,6 +1384,8 @@ BOOL  RectTreeItem(HWND hwndLB, register INT iItem, BOOL bFocusOn);
 #define IDS_COMPRESS_ATTRIB_ERR  429
 #define IDS_NTLDRCOMPRESSERR     430
 #define IDS_MULTICOMPRESSERR     431
+
+#define IDS_RUNDLGFAIL           432
 
 #define IDS_VERNAME_BASE          500
 #define IDS_VN_COMMENTS           (IDS_VERNAME_BASE + 0)
