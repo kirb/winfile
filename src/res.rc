@@ -172,8 +172,6 @@ BEGIN
     POPUP       "&Help"
     BEGIN
     MENUITEM    "&Contents",                IDM_HELPINDEX
-    MENUITEM    "&Search for Help on...",   IDM_HELPKEYS
-    MENUITEM    "&How to Use Help",         IDM_HELPHELP
     MENUITEM    SEPARATOR
     MENUITEM    "&About File Manager...",   IDM_ABOUT
     END

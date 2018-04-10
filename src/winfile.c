@@ -838,10 +838,6 @@ FrameWndProc(HWND hwnd, UINT wMsg, WPARAM wParam, LPARAM lParam)
       }
 
    case WM_DESTROY:
-
-      if (!WinHelp(hwndFrame, szWinfileHelp, HELP_QUIT, 0L)) {
-         MyMessageBox(hwndFrame, IDS_WINFILE, IDS_WINHELPERR, MB_OK | MB_ICONEXCLAMATION | MB_SYSTEMMODAL);
-      }
       hwndFrame = NULL;
       PostQuitMessage(0);
       DestroyWindow(hwndDriveBar);

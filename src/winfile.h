@@ -1872,8 +1872,8 @@ Extern LARGE_INTEGER qTotalSpace;
 
 Extern HWND hwndStatus        EQ( NULL );
 
-Extern TCHAR szWinfileHelp[]  EQ( TEXT("WINFILE.HLP") );
-Extern WCHAR wszWinfileHelp[] EQ( L"WINFILE.HLP" );
+Extern TCHAR szWinfileHelp[]  EQ( TEXT("WINFILE.CHM") );
+Extern WCHAR wszWinfileHelp[] EQ( L"WINFILE.CHM" );
 
 Extern INT iNumExtensions     EQ( 0 );
 Extern EXTENSION extensions[MAX_EXTENSIONS];

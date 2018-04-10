@@ -18,6 +18,7 @@
 #include <shlobj.h>
 #include <commctrl.h>
 #include <ole2.h>
+#include <HtmlHelp.h>
 
 #define HELP_PARTIALKEY 0x0105L    // call the search engine in winhelp
 
@@ -2061,20 +2062,8 @@ CHECK_OPTION:
        }
 
     case IDM_HELPINDEX:
-       dwFlags = HELP_INDEX;
-       goto ACPCallHelp;
-
-    case IDM_HELPKEYS:
-       dwFlags = HELP_PARTIALKEY;
-       goto ACPCallHelp;
-
-    case IDM_HELPHELP:
-       dwFlags = HELP_HELPONHELP;
-       goto ACPCallHelp;
-
-ACPCallHelp:
    	   SetCurrentDirectory(szOriginalDirPath);
-       if (!WinHelp(hwndFrame, szWinfileHelp, dwFlags, (ULONG_PTR)szNULL))
+	   if (!HtmlHelp(hwndFrame, szWinfileHelp, HH_DISPLAY_TOC, NULL))
           MyMessageBox(hwndFrame, IDS_WINFILE, IDS_WINHELPERR, MB_OK | MB_ICONEXCLAMATION | MB_SYSTEMMODAL);
        break;
 
