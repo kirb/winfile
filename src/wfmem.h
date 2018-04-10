@@ -50,6 +50,7 @@ typedef struct _XDTA {
    FILETIME ftLastWriteTime;
    LARGE_INTEGER qFileSize;
    UINT  cchFileNameOffset;
+   UINT  cchAlternateFileNameOffset;
 
    BYTE  byBitmap;
    BYTE  byType;
@@ -65,11 +66,12 @@ LPXDTALINK MemNew();
 VOID   MemDelete(LPXDTALINK lpStart);
 
 LPXDTALINK MemClone(LPXDTALINK lpStart);
-LPXDTA MemAdd(LPXDTALINK* plpLast, UINT cchFileName, UINT cchAlternateFileName);
+LPXDTA MemAdd(LPXDTALINK* plpLast, UINT cchFileName, UINT cchAlternateFileName, UINT cchFullFileName);
 LPXDTA MemNext(LPXDTALINK* plpLink, LPXDTA lpxdta);
 
 #define MemFirst(lpStart) ((LPXDTA)(((PBYTE)lpStart) + LINKHEADSIZE))
 #define MemGetAlternateFileName(lpxdta) (&lpxdta->cFileNames[lpxdta->cchFileNameOffset])
+#define MemGetFullFileName(lpxdta) (&lpxdta->cFileNames[lpxdta->cchAlternateFileNameOffset])
 #define MemGetFileName(lpxdta)          (lpxdta->cFileNames)
 #define MemLinkToHead(link) ((LPXDTAHEAD)((PBYTE)link+sizeof(XDTALINK)))
 
