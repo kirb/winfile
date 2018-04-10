@@ -32,6 +32,8 @@ VOID InitNetMenuItems(VOID);
 INT UpdateConnectionsOnConnect(VOID);
 VOID LockFormatDisk(INT iDrive1, INT iDrive2, DWORD dwMessage, DWORD dwCommand, BOOL bLock);
 
+typedef int (*ShellRunDlgType)(HWND hwndParent, HICON hIcon, LPCTSTR lpszWorkingDir, LPCTSTR lpszTitle, LPCTSTR lpszPrompt, DWORD dwFlags);
+
 VOID
 NotifySearchFSC(
    LPWSTR pszPath, DWORD dwFunction)
@@ -999,9 +1001,30 @@ AppCommandProc(register DWORD id)
       break;
 
    case IDM_RUN:
+	   {
+			// Use SHELL32.DLL private function RunDlg() to show the system Run dialog.
+		   HINSTANCE hShell32 = LoadLibrary(TEXT("shell32.dll"));
 
-      DialogBox(hAppInstance, (LPTSTR) MAKEINTRESOURCE(RUNDLG), hwndFrame, (DLGPROC)RunDlgProc);
-      break;
+		   if (hShell32 == NULL)
+		   {
+			   MyMessageBox(hwndFrame, IDS_RUN, IDS_RUNDLGFAIL, MB_OK | MB_ICONEXCLAMATION | MB_APPLMODAL);
+			   break;
+		   }
+
+		   ShellRunDlgType pRunDlg = (ShellRunDlgType)GetProcAddress(hShell32, 61);
+
+		   if (pRunDlg == NULL)
+		   {
+			   MyMessageBox(hwndFrame, IDS_RUN, IDS_RUNDLGFAIL, MB_OK | MB_ICONEXCLAMATION | MB_APPLMODAL);
+			   FreeLibrary(hShell32);
+			   break;
+		   }
+
+			pRunDlg(hwndFrame, NULL, NULL, NULL, NULL, 0);
+
+		   FreeLibrary(hShell32);
+		   break;
+	   }
 
    case IDM_STARTCMDSHELL:
 	   {

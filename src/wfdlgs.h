@@ -7,7 +7,6 @@
 
 ********************************************************************/
 
-#define RUNDLG        10
 #define MYPRINTDLG       11
 #define ASSOCIATEDLG     12
 #define SEARCHDLG     13
