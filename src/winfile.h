@@ -578,7 +578,6 @@ BOOL CancelDlgProc  (HWND, UINT, WPARAM, LPARAM);
 INT_PTR  DrivesDlgProc(HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);
 INT_PTR  AssociateDlgProc(HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);
 INT_PTR  SearchDlgProc(HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);
-INT_PTR  RunDlgProc(HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);
 INT_PTR  SelectDlgProc(HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);
 INT_PTR  FontDlgProc(HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);
 INT_PTR  SuperDlgProc(HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);

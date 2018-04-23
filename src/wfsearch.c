@@ -282,7 +282,7 @@ MemoryError:
 
          maxExt = max(size.cx,maxExt);
 
-         lpxdta = MemAdd(plpStart, lstrlen(pszNewPath), 0);
+         lpxdta = MemAdd(plpStart, lstrlen(pszNewPath), 0, 0);
 
          if (!lpxdta) {
 

@@ -691,29 +691,6 @@ DocFind(PPDOCBUCKET ppDocBucket, LPTSTR lpszExt)
 
 
 
-HICON DocGetIcon(PDOCBUCKET pDocBucket)
-{
-   if (pDocBucket == NULL)
-		return NULL;
-
-   if (pDocBucket->hIcon == NULL && pDocBucket->lpszFI != NULL)
-   {
-      TCHAR *pchT = wcsrchr(pDocBucket->lpszFI, ',');
-
-      if (pchT != NULL)
-      {
-      	  INT index = atoi(pchT+1);
-      	  HICON hIcon;
-
-		  *pchT = '\0';
-      	  if (ExtractIconEx(pDocBucket->lpszFI, index, NULL, &hIcon, 1) == 1)
-      	  	pDocBucket->hIcon = hIcon;
-      }
-   }
-   return pDocBucket->hIcon;
-}
-
-
 #ifdef DOCENUM
 
 //

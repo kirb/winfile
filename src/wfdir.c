@@ -173,7 +173,9 @@ DrawItem(
 
    if (fShowSourceBitmaps || (hwndDragging != hwndLB) || !bDrawSelected) {
 
-         HICON hIcon = DocGetIcon(lpxdta->pDocB);
+	   SHFILEINFO stFileInfo;
+	   SHGetFileInfo(MemGetFullFileName(lpxdta), FILE_ATTRIBUTE_NORMAL, &stFileInfo, sizeof(stFileInfo), SHGFI_ICON | SHGFI_SMALLICON);
+	   HICON hIcon = stFileInfo.hIcon;
 
          if (hIcon != NULL)
          {

@@ -22,7 +22,6 @@ PPDOCBUCKET DocConstruct(VOID);
 VOID DocDestruct(PPDOCBUCKET ppDocBucket);
 INT DocInsert(PPDOCBUCKET ppDocBucket, LPTSTR lpszExt, LPTSTR lpszFileIcon);
 PDOCBUCKET DocFind(PPDOCBUCKET ppDocBucket, LPTSTR lpszExt);
-HICON DocGetIcon(PDOCBUCKET pDocBucket);
 
 #ifdef DOCENUM
 typedef struct _DOC_ENUM DOCENUM, *PDOCENUM;
